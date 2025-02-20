@@ -1,0 +1,68 @@
+{
+  "name": "verblaze-vscode",
+  "displayName": "Verblaze Translation Manager",
+  "description": "Verblaze translation management system for VSCode",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "verblaze.login",
+        "title": "Verblaze: Login with CLI Token"
+      },
+      {
+        "command": "verblaze.logout",
+        "title": "Verblaze: Logout"
+      },
+      {
+        "command": "verblaze.translate",
+        "title": "Verblaze: Translate Selection"
+      },
+      {
+        "command": "verblaze.search",
+        "title": "Verblaze: Search Translations"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "verblaze.translate",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "@types/node-fetch": "^2.6.12",
+    "@types/vscode": "^1.97.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}
