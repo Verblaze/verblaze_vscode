@@ -1,0 +1,389 @@
+{
+  "flutter": {
+    "file_extensions": [".dart"],
+    "code_patterns": [
+      {
+        "name": "strings",
+        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+      }
+    ],
+    "prefixes_to_ignore": [
+      "package:",
+      "http:",
+      "https:",
+      "dart:",
+      "mailto:",
+      "tel:",
+      "sms:",
+      "print(",
+      "debugPrint(",
+      "log(",
+      "assert(",
+      "throw(",
+      "Uri.parse(",
+      "RegExp(",
+      "../"
+    ]
+  },
+  "react": {
+    "file_extensions": [".jsx", ".tsx", ".js", ".ts"],
+    "jsx_patterns": [
+      {
+        "name": "text_nodes",
+        "pattern": "(?:>([^<>{}]+)<)"
+      },
+      {
+        "name": "attributes",
+        "pattern": "(?:(?:alt|title|placeholder|aria-label|label)=[\"']([^\"']+)[\"'])"
+      }
+    ],
+    "template_patterns": [
+      {
+        "name": "template_literals",
+        "pattern": "`([^`]*?)`"
+      }
+    ],
+    "code_patterns": [
+      {
+        "name": "strings",
+        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+      }
+    ],
+    "prefixes_to_ignore": [
+      "import ",
+      "require(",
+      "console.log(",
+      "http:",
+      "https:",
+      "mailto:",
+      "tel:",
+      "sms:",
+      "../",
+      "./",
+      "export ",
+      "function",
+      "const ",
+      "let ",
+      "var ",
+      "{",
+      "}",
+      "return "
+    ]
+  },
+  "react-native": {
+    "file_extensions": [".jsx", ".tsx", ".js", ".ts"],
+    "jsx_patterns": [
+      {
+        "name": "text_nodes",
+        "pattern": "(?:>([^<>{}]+)<)"
+      },
+      {
+        "name": "attributes",
+        "pattern": "(?:(?:alt|title|placeholder|aria-label|label)=[\"']([^\"']+)[\"'])"
+      }
+    ],
+    "template_patterns": [
+      {
+        "name": "template_literals",
+        "pattern": "`([^`]*?)`"
+      }
+    ],
+    "code_patterns": [
+      {
+        "name": "strings",
+        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+      }
+    ],
+    "prefixes_to_ignore": [
+      "import ",
+      "require(",
+      "console.log(",
+      "http:",
+      "https:",
+      "mailto:",
+      "tel:",
+      "sms:",
+      "../",
+      "./",
+      "export ",
+      "function",
+      "const ",
+      "let ",
+      "var ",
+      "{",
+      "}",
+      "return "
+    ]
+  },
+  "nextjs": {
+    "file_extensions": [".jsx", ".tsx", ".js", ".ts"],
+    "jsx_patterns": [
+      {
+        "name": "text_nodes",
+        "pattern": "(?:>([^<>{}]+)<)"
+      },
+      {
+        "name": "attributes",
+        "pattern": "(?:(?:alt|title|placeholder|aria-label|label)=[\"']([^\"']+)[\"'])"
+      }
+    ],
+    "template_patterns": [
+      {
+        "name": "template_literals",
+        "pattern": "`([^`]*?)`"
+      }
+    ],
+    "code_patterns": [
+      {
+        "name": "strings",
+        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+      }
+    ],
+    "prefixes_to_ignore": [
+      "import ",
+      "export ",
+      "require(",
+      "console.log(",
+      "http:",
+      "https:",
+      "mailto:",
+      "tel:",
+      "sms:",
+      "../",
+      "./",
+      "function",
+      "const ",
+      "let ",
+      "var ",
+      "{",
+      "}",
+      "return "
+    ]
+  },
+  "swift": {
+    "file_extensions": [".swift"],
+    "ui_patterns": [
+      {
+        "name": "text",
+        "pattern": "text=\"([^\"]*)\""
+      },
+      {
+        "name": "placeholder",
+        "pattern": "placeholder=\"([^\"]*)\""
+      },
+      {
+        "name": "title",
+        "pattern": "title=\"([^\"]*)\""
+      },
+      {
+        "name": "accessibilityLabel",
+        "pattern": "accessibilityLabel=\"([^\"]*)\""
+      },
+      {
+        "name": "accessibilityHint",
+        "pattern": "accessibilityHint=\"([^\"]*)\""
+      },
+      {
+        "name": "headerTitle",
+        "pattern": "headerTitle=\"([^\"]*)\""
+      },
+      {
+        "name": "footerTitle",
+        "pattern": "footerTitle=\"([^\"]*)\""
+      },
+      {
+        "name": "prompt",
+        "pattern": "prompt=\"([^\"]*)\""
+      },
+      {
+        "name": "message",
+        "pattern": "message=\"([^\"]*)\""
+      }
+    ],
+    "code_patterns": [
+      {
+        "name": "strings",
+        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+      },
+      {
+        "name": "localized",
+        "pattern": "NSLocalizedString\\(\"([^\"]+)\""
+      },
+      {
+        "name": "text_assignment",
+        "pattern": "\\.text\\s*=\\s*\"([^\"]+)\""
+      },
+      {
+        "name": "title_assignment",
+        "pattern": "\\.title\\s*=\\s*\"([^\"]+)\""
+      }
+    ],
+    "prefixes_to_ignore": [
+      "import ",
+      "class ",
+      "func ",
+      "let ",
+      "var ",
+      "//",
+      "/*",
+      "print(",
+      "NSLog(",
+      "http:",
+      "https:",
+      "mailto:",
+      "tel:",
+      "sms:",
+      "IBAction",
+      "IBOutlet",
+      "UIViewController",
+      "UIView"
+    ]
+  },
+  "kotlin": {
+    "file_extensions": [".kt", ".kts"],
+    "ui_patterns": [
+      {
+        "name": "text",
+        "pattern": "android:text=\"([^\"@]*)\""
+      },
+      {
+        "name": "hint",
+        "pattern": "android:hint=\"([^\"@]*)\""
+      },
+      {
+        "name": "contentDescription",
+        "pattern": "android:contentDescription=\"([^\"@]*)\""
+      },
+      {
+        "name": "title",
+        "pattern": "android:title=\"([^\"@]*)\""
+      },
+      {
+        "name": "subtitle",
+        "pattern": "android:subtitle=\"([^\"@]*)\""
+      },
+      {
+        "name": "summary",
+        "pattern": "android:summary=\"([^\"@]*)\""
+      },
+      {
+        "name": "dialogTitle",
+        "pattern": "android:dialogTitle=\"([^\"@]*)\""
+      },
+      {
+        "name": "dialogMessage",
+        "pattern": "android:dialogMessage=\"([^\"@]*)\""
+      }
+    ],
+    "code_patterns": [
+      {
+        "name": "strings",
+        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+      },
+      {
+        "name": "getString",
+        "pattern": "getString\\(.*?\"([^\"]+)\"\\)"
+      },
+      {
+        "name": "setText",
+        "pattern": "setText\\(\"([^\"]+)\"\\)"
+      },
+      {
+        "name": "setTitle",
+        "pattern": "setTitle\\(\"([^\"]+)\"\\)"
+      }
+    ],
+    "prefixes_to_ignore": [
+      "import ",
+      "class ",
+      "fun ",
+      "val ",
+      "var ",
+      "//",
+      "/*",
+      "print(",
+      "println(",
+      "http:",
+      "https:",
+      "mailto:",
+      "tel:",
+      "sms:",
+      "R.layout",
+      "R.id",
+      "android:",
+      "@+id"
+    ]
+  },
+  "blazor": {
+    "file_extensions": [".razor", ".cshtml"],
+    "code_patterns": [
+      {
+        "name": "strings",
+        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+      }
+    ],
+    "template_patterns": [
+      {
+        "name": "template_literals",
+        "pattern": "`([^`]*?)`"
+      }
+    ],
+    "prefixes_to_ignore": [
+      "using ",
+      "namespace ",
+      "public ",
+      "private ",
+      "protected ",
+      "class ",
+      "void ",
+      "return ",
+      "http:",
+      "https:",
+      "mailto:",
+      "tel:",
+      "sms:",
+      "../",
+      "./",
+      "var ",
+      "let ",
+      "const ",
+      "{",
+      "}",
+      "@"
+    ]
+  },
+  "qt": {
+    "file_extensions": [".qml"],
+    "code_patterns": [
+      {
+        "name": "strings",
+        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+      }
+    ],
+    "prefixes_to_ignore": [
+      "import ",
+      "QtQuick.",
+      "QtQuick.Controls.",
+      "Qt.",
+      "width:",
+      "height:",
+      "id:",
+      "anchors.",
+      "http:",
+      "https:",
+      "mailto:",
+      "tel:",
+      "sms:",
+      "../",
+      "./",
+      "return ",
+      "new ",
+      "function ",
+      "var ",
+      "{",
+      "}",
+      ";",
+      ","
+    ]
+  }
+}

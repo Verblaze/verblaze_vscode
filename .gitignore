@@ -4,3 +4,9 @@
 .DS_Store
 .env
 .env.local
+node_modules/
+verblaze-vscode-*.vsix
+verblaze-vscode-*.vsix.zip
+out/*.js
+out/*.map
+out/
