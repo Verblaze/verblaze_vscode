@@ -1,6 +1,5 @@
 {
   "flutter": {
-    "file_extensions": [".dart"],
     "code_patterns": [
       {
         "name": "strings",
@@ -23,10 +22,22 @@
       "Uri.parse(",
       "RegExp(",
       "../"
+    ],
+    "filtering_patterns": [
+      "^[A-Z][A-Za-z0-9]+\\.[A-Za-z0-9]+",
+      ".*\\.(png|jpg|jpeg|gif|svg)$"
+    ],
+    "keywords_to_ignore": [
+      "final",
+      "const",
+      "var",
+      "void",
+      "null",
+      "true",
+      "false"
     ]
   },
   "react": {
-    "file_extensions": [".jsx", ".tsx", ".js", ".ts"],
     "jsx_patterns": [
       {
         "name": "text_nodes",
@@ -41,12 +52,6 @@
       {
         "name": "template_literals",
         "pattern": "`([^`]*?)`"
-      }
-    ],
-    "code_patterns": [
-      {
-        "name": "strings",
-        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
       }
     ],
     "prefixes_to_ignore": [
@@ -71,7 +76,6 @@
     ]
   },
   "react-native": {
-    "file_extensions": [".jsx", ".tsx", ".js", ".ts"],
     "jsx_patterns": [
       {
         "name": "text_nodes",
@@ -86,12 +90,6 @@
       {
         "name": "template_literals",
         "pattern": "`([^`]*?)`"
-      }
-    ],
-    "code_patterns": [
-      {
-        "name": "strings",
-        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
       }
     ],
     "prefixes_to_ignore": [
@@ -116,7 +114,6 @@
     ]
   },
   "nextjs": {
-    "file_extensions": [".jsx", ".tsx", ".js", ".ts"],
     "jsx_patterns": [
       {
         "name": "text_nodes",
@@ -131,12 +128,6 @@
       {
         "name": "template_literals",
         "pattern": "`([^`]*?)`"
-      }
-    ],
-    "code_patterns": [
-      {
-        "name": "strings",
-        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
       }
     ],
     "prefixes_to_ignore": [
@@ -161,7 +152,6 @@
     ]
   },
   "swift": {
-    "file_extensions": [".swift"],
     "ui_patterns": [
       {
         "name": "text",
@@ -203,7 +193,7 @@
     "code_patterns": [
       {
         "name": "strings",
-        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+        "pattern": "(?<!\\\\)\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\""
       },
       {
         "name": "localized",
@@ -216,6 +206,10 @@
       {
         "name": "title_assignment",
         "pattern": "\\.title\\s*=\\s*\"([^\"]+)\""
+      },
+      {
+        "name": "text_component",
+        "pattern": "Text\\(\"([^\"]+)\"\\)"
       }
     ],
     "prefixes_to_ignore": [
@@ -236,11 +230,110 @@
       "IBAction",
       "IBOutlet",
       "UIViewController",
-      "UIView"
+      "UIView",
+      "Font.custom(",
+      "Font.system(",
+      "Image(",
+      "Color(",
+      "forKey:",
+      "key:",
+      "Bundle.",
+      "Bundle("
+    ],
+    "filtering_patterns": [
+      "^Font\\.custom\\(.+\\)",
+      "^Image\\(.+\\)",
+      "^Color\\(.+\\)",
+      "^systemName:.+",
+      "^named:.+",
+      "^forKey:.+",
+      "^key:.+",
+      "^UserDefaults\\.standard\\.\\w+",
+      "^loginview\\.\\w+",
+      "^Bundle\\.main\\.\\w+",
+      "^\\.[\\w]+(:|$)",
+      ".*\\.(png|jpg|jpeg|gif|pdf|svg)$",
+      ".*\\.(swift|storyboard|xib)$",
+      "^return .+",
+      "^self\\.\\w+",
+      "^super\\.\\w+",
+      "^@IBOutlet .+",
+      "^@IBAction .+",
+      "^@State .+",
+      "^@Binding .+",
+      "^@ObservedObject .+",
+      "^[A-Z][A-Za-z0-9]+\\.[A-Za-z0-9.]+",
+      "^#[a-zA-Z0-9]+",
+      "^[a-z]+:/{2}",
+      "^[\\w.]+\\.[\\w.]+_[\\w.]+$"
+    ],
+    "keywords_to_ignore": [
+      "func",
+      "var",
+      "let",
+      "class",
+      "struct",
+      "enum",
+      "protocol",
+      "extension",
+      "init",
+      "deinit",
+      "self",
+      "Self",
+      "super",
+      "override",
+      "mutating",
+      "static",
+      "dynamic",
+      "final",
+      "open",
+      "public",
+      "internal",
+      "private",
+      "fileprivate",
+      "import",
+      "typealias",
+      "associatedtype",
+      "switch",
+      "case",
+      "default",
+      "if",
+      "else",
+      "for",
+      "while",
+      "repeat",
+      "do",
+      "return",
+      "break",
+      "continue",
+      "fallthrough",
+      "defer",
+      "throw",
+      "throws",
+      "rethrows",
+      "guard",
+      "in",
+      "as",
+      "is",
+      "try",
+      "catch",
+      "nil",
+      "true",
+      "false",
+      "where",
+      "#if",
+      "#endif",
+      "#selector",
+      "@IBOutlet",
+      "@IBAction",
+      "@objc",
+      "@available",
+      "weak",
+      "strong",
+      "unowned"
     ]
   },
   "kotlin": {
-    "file_extensions": [".kt", ".kts"],
     "ui_patterns": [
       {
         "name": "text",
@@ -278,7 +371,7 @@
     "code_patterns": [
       {
         "name": "strings",
-        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+        "pattern": "(?<!\\\\)\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\""
       },
       {
         "name": "getString",
@@ -291,6 +384,26 @@
       {
         "name": "setTitle",
         "pattern": "setTitle\\(\"([^\"]+)\"\\)"
+      },
+      {
+        "name": "text_component",
+        "pattern": "Text\\(\"([^\"]+)\"\\)"
+      },
+      {
+        "name": "text_component_res",
+        "pattern": "Text\\(stringResource\\(.*?\"([^\"]+)\"\\)\\)"
+      },
+      {
+        "name": "button_component",
+        "pattern": "Button\\(.*?\\)\\s*\\{[^}]*Text\\(\"([^\"]+)\"\\)"
+      },
+      {
+        "name": "alertdialog_component",
+        "pattern": "AlertDialog\\(.*?title\\s*=\\s*\\{[^}]*Text\\(\"([^\"]+)\"\\)"
+      },
+      {
+        "name": "alertdialog_message",
+        "pattern": "AlertDialog\\(.*?text\\s*=\\s*\\{[^}]*Text\\(\"([^\"]+)\"\\)"
       }
     ],
     "prefixes_to_ignore": [
@@ -312,14 +425,146 @@
       "R.id",
       "android:",
       "@+id"
+    ],
+    "filtering_patterns": [
+      "^R\\.",
+      "^androidx\\.",
+      "^android\\.",
+      "^com\\.",
+      "^java\\.",
+      "^kotlin\\.",
+      "^@\\w+",
+      "^by\\s+",
+      "^Color\\(",
+      "^MaterialTheme",
+      "^remember",
+      "^mutableStateOf",
+      "^Modifier\\.",
+      "^\\.\\w+\\(",
+      "^\\{.*\\}$",
+      "^@Composable",
+      "^@Preview",
+      "^@Inject",
+      "^@Module",
+      "^@Provides",
+      "^@HiltViewModel",
+      "^viewModel\\.",
+      "^navController\\.",
+      "^coroutineScope\\.",
+      "^sharedPreferences\\.",
+      "^editor\\.",
+      "^bitmap\\.",
+      "^file\\.",
+      "^\\w+\\.\\w+\\(.*\\)",
+      ".*\\.(png|jpg|jpeg|gif|svg|xml|kt|java)$",
+      "^Uri\\.",
+      "^intent\\.",
+      "^bundle\\.",
+      "^activity\\.",
+      "^context\\.",
+      "^view\\."
+    ],
+    "keywords_to_ignore": [
+      "fun",
+      "val",
+      "var",
+      "class",
+      "object",
+      "interface",
+      "suspend",
+      "companion",
+      "override",
+      "private",
+      "protected",
+      "public",
+      "internal",
+      "abstract",
+      "final",
+      "sealed",
+      "open",
+      "data",
+      "enum",
+      "annotation",
+      "init",
+      "constructor",
+      "super",
+      "this",
+      "lateinit",
+      "lazy",
+      "by",
+      "get",
+      "set",
+      "true",
+      "false",
+      "null",
+      "if",
+      "else",
+      "when",
+      "for",
+      "while",
+      "do",
+      "continue",
+      "break",
+      "return",
+      "try",
+      "catch",
+      "finally",
+      "throw",
+      "throws",
+      "as",
+      "is",
+      "in",
+      "!in",
+      "out",
+      "package",
+      "import",
+      "typealias",
+      "infix",
+      "operator",
+      "inline",
+      "reified",
+      "tailrec",
+      "external",
+      "const",
+      "inner",
+      "crossinline",
+      "noinline",
+      "actual",
+      "expect",
+      "setOf",
+      "listOf",
+      "mapOf",
+      "mutableListOf",
+      "mutableMapOf",
+      "arrayOf",
+      "arrayListOf",
+      "hashMapOf",
+      "hashSetOf",
+      "sequenceOf",
+      "apply",
+      "let",
+      "run",
+      "with",
+      "also",
+      "takeIf",
+      "takeUnless",
+      "repeat",
+      "TODO"
     ]
   },
   "blazor": {
-    "file_extensions": [".razor", ".cshtml"],
     "code_patterns": [
       {
-        "name": "strings",
-        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+        "name": "double_quotes",
+        "pattern": "\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\""
+      },
+      {
+        "name": "single_quotes",
+        "pattern": "'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'"
+      },
+      {
+        "name": "bind",
+        "pattern": "@bind=\"([^\"]+)\""
       }
     ],
     "template_patterns": [
@@ -353,11 +598,10 @@
     ]
   },
   "qt": {
-    "file_extensions": [".qml"],
     "code_patterns": [
       {
         "name": "strings",
-        "pattern": "(?:'([^'\\\\]*(?:\\\\.[^'\\\\]*)*)'|\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\")"
+        "pattern": "\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\""
       }
     ],
     "prefixes_to_ignore": [
