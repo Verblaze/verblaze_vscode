@@ -6,6 +6,7 @@ const vscode = require("vscode");
 const node_fetch_1 = require("node-fetch");
 const fs = require("fs");
 const path = require("path");
+const filters_1 = require("./filters");
 async function activate(context) {
     // Create status bar item
     const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
@@ -217,17 +218,20 @@ async function activate(context) {
         const patternsContent = fs.readFileSync(patternsPath, "utf8");
         const patterns = JSON.parse(patternsContent);
         // Find matching technology based on file extension
-        const technology = Object.values(patterns).find((tech) => tech.file_extensions.includes(fileExtension));
+        const technology = Object.keys(patterns).find((key) => patterns[key].file_extensions &&
+            patterns[key].file_extensions.some((ext) => ext === fileExtension));
         if (!technology) {
             vscode.window.showErrorMessage(`Unsupported file type: ${fileExtension}`);
             return;
         }
+        // Get the appropriate filter based on the technology
+        const technologyFilter = (0, filters_1.getFilterForTechnology)(technology);
         // Get all patterns for the technology
         const allPatterns = [
-            ...(technology.code_patterns || []),
-            ...(technology.jsx_patterns || []),
-            ...(technology.template_patterns || []),
-            ...(technology.ui_patterns || []),
+            ...(patterns[technology].code_patterns || []),
+            ...(patterns[technology].jsx_patterns || []),
+            ...(patterns[technology].template_patterns || []),
+            ...(patterns[technology].ui_patterns || []),
         ];
         // Extract strings using patterns
         const fileContent = editor.document.getText();
@@ -238,6 +242,26 @@ async function activate(context) {
             const translationKeyPattern = /^[a-z0-9_]+\.[a-z0-9_]+$/;
             return translationKeyPattern.test(text.trim());
         };
+        // Aralıkların üst üste binip binmediğini kontrol eden fonksiyon
+        const hasOverlap = (range1, range2) => {
+            // Aralıklar tamamen aynıysa üst üste binmiş sayılır
+            if (range1.isEqual(range2)) {
+                return true;
+            }
+            // Bir aralık diğerini içeriyorsa üst üste binmiş sayılır
+            if (range1.contains(range2) || range2.contains(range1)) {
+                return true;
+            }
+            // Aralıklar kısmen örtüşüyorsa
+            if (range1.intersection(range2)) {
+                return true;
+            }
+            return false;
+        };
+        // Zaten var olan konum varsa kontrol eden fonksiyon
+        const isOverlappingWithExisting = (range) => {
+            return matchPositions.some((pos) => hasOverlap(pos.range, range));
+        };
         for (const patternObj of allPatterns) {
             const regex = new RegExp(patternObj.pattern, "g");
             let match;
@@ -246,20 +270,53 @@ async function activate(context) {
                 const extractedText = match[1] || match[2];
                 if (extractedText &&
                     extractedText.trim() &&
-                    !technology.prefixes_to_ignore.some((prefix) => extractedText.trim().startsWith(prefix)) &&
+                    !patterns[technology].prefixes_to_ignore.some((prefix) => extractedText.trim().startsWith(prefix)) &&
                     !isTranslationKey(extractedText) // Skip if it's already a translation key
                 ) {
                     const trimmedText = extractedText.trim();
-                    translations.push(trimmedText);
+                    // Flutter için print ve debugPrint fonksiyonlarında bulunan metinleri atla
+                    if (technology.toLowerCase() === "flutter") {
+                        // Tüm satırı elde etmek için, eşleşen metnin başlangıç pozisyonundan önceki metni al
+                        const lineStart = editor.document.lineAt(editor.document.positionAt(match.index)).lineNumber;
+                        const line = editor.document.lineAt(lineStart).text.trim();
+                        // print, debugPrint, log, assert, throw gibi fonksiyonlarda bulunan metinleri atla
+                        const flutterFunctionPatterns = [
+                            /print\s*\(/i,
+                            /debugPrint\s*\(/i,
+                            /log\s*\(/i,
+                            /logger\.[a-zA-Z]+\s*\(/i, // logger.info(), logger.error() vb.
+                            /assert\s*\(/i,
+                            /throw\s*\w+\(/i,
+                            /console\.[a-zA-Z]+\s*\(/i, // console.log, console.error vb.
+                            /Sentry\.[a-zA-Z]+\s*\(/i, // Sentry.captureMessage vb.
+                            /FirebaseCrashlytics\.instance\.log\s*\(/i,
+                        ];
+                        if (flutterFunctionPatterns.some((pattern) => pattern.test(line))) {
+                            continue; // Bu metni atla
+                        }
+                    }
+                    // Uygula gelişmiş filtrelemeyi
+                    if (technologyFilter && technology.toLowerCase() === "swift") {
+                        // Swift için özel filtreleme
+                        if (!technologyFilter.shouldTranslate(trimmedText, patterns[technology].filtering_patterns, patterns[technology].keywords_to_ignore)) {
+                            continue; // Bu stringi atla
+                        }
+                    }
                     // Calculate the range for this match
                     // Find the actual quote content in the original match
                     const fullMatch = match[0];
                     const quoteStart = fullMatch.indexOf(extractedText);
                     const startPos = editor.document.positionAt(match.index + quoteStart);
                     const endPos = editor.document.positionAt(match.index + quoteStart + extractedText.length);
+                    const range = new vscode.Range(startPos, endPos);
+                    // Eğer bu aralık daha önce bulunan herhangi bir aralıkla çakışıyorsa, bu eşleşmeyi atla
+                    if (isOverlappingWithExisting(range)) {
+                        continue;
+                    }
+                    translations.push(trimmedText);
                     matchPositions.push({
                         value: trimmedText,
-                        range: new vscode.Range(startPos, endPos),
+                        range: range,
                     });
                 }
             }

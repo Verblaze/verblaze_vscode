@@ -1,5 +1,6 @@
 {
   "flutter": {
+    "file_extensions": [".dart"],
     "code_patterns": [
       {
         "name": "strings",
@@ -17,11 +18,34 @@
       "print(",
       "debugPrint(",
       "log(",
+      "logger.",
       "assert(",
       "throw(",
+      "throw new",
       "Uri.parse(",
       "RegExp(",
-      "../"
+      "../",
+      "./",
+      "File(",
+      "Directory(",
+      "Path.",
+      "Assets.",
+      "FirebaseCrashlytics",
+      "Sentry.",
+      "DeviceInfo",
+      "PackageInfo",
+      "Intl.message",
+      "flutter:",
+      "theme:",
+      "material:",
+      "cupertino:",
+      "firebase:",
+      "google_fonts:",
+      "firebase_",
+      "google_",
+      "flutter_",
+      "cloud_",
+      "path_provider"
     ],
     "filtering_patterns": [
       "^[A-Z][A-Za-z0-9]+\\.[A-Za-z0-9]+",
@@ -38,6 +62,7 @@
     ]
   },
   "react": {
+    "file_extensions": [".jsx", ".js", ".tsx", ".ts"],
     "jsx_patterns": [
       {
         "name": "text_nodes",
@@ -76,6 +101,7 @@
     ]
   },
   "react-native": {
+    "file_extensions": [".jsx", ".js", ".tsx", ".ts"],
     "jsx_patterns": [
       {
         "name": "text_nodes",
@@ -114,6 +140,7 @@
     ]
   },
   "nextjs": {
+    "file_extensions": [".jsx", ".js", ".tsx", ".ts"],
     "jsx_patterns": [
       {
         "name": "text_nodes",
@@ -152,6 +179,7 @@
     ]
   },
   "swift": {
+    "file_extensions": [".swift", ".h", ".m"],
     "ui_patterns": [
       {
         "name": "text",
@@ -234,6 +262,9 @@
       "Font.custom(",
       "Font.system(",
       "Image(",
+      "Image.systemName(",
+      "UIImage.systemName(",
+      "UIImage(",
       "Color(",
       "forKey:",
       "key:",
@@ -243,11 +274,30 @@
     "filtering_patterns": [
       "^Font\\.custom\\(.+\\)",
       "^Image\\(.+\\)",
+      "^Image\\(systemName:.+\\)",
+      "^SF[\\w]+\\(systemName:.+\\)",
       "^Color\\(.+\\)",
       "^systemName:.+",
       "^named:.+",
       "^forKey:.+",
       "^key:.+",
+      "^Symbol\\(.+\\)",
+      "^SF Symbol:.+",
+      "^Icon\\(.+\\)",
+      "^Label\\(.+\\)",
+      "^Button\\(.+\\)",
+      "^Toggle\\(.+\\)",
+      "^List\\(.+\\)",
+      "^NavigationLink\\(.+\\)",
+      "^TabItem\\(.+\\)",
+      "^ToolbarItem\\(.+\\)",
+      "^TextField\\(\"[^\"]+\", text:.+\\)",
+      "^SecureField\\(\"[^\"]+\", text:.+\\)",
+      "^DatePicker\\(\"[^\"]+\", selection:.+\\)",
+      "^Picker\\(\"[^\"]+\", selection:.+\\)",
+      "^Menu\\(\"[^\"]+\"\\)",
+      "^UIImage\\(systemName:.+\\)",
+      "^NSLocalizedString",
       "^UserDefaults\\.standard\\.\\w+",
       "^loginview\\.\\w+",
       "^Bundle\\.main\\.\\w+",
@@ -334,6 +384,7 @@
     ]
   },
   "kotlin": {
+    "file_extensions": [".kt", ".kts", ".java", ".xml"],
     "ui_patterns": [
       {
         "name": "text",
@@ -553,6 +604,7 @@
     ]
   },
   "blazor": {
+    "file_extensions": [".razor", ".cshtml", ".cs"],
     "code_patterns": [
       {
         "name": "double_quotes",
@@ -598,6 +650,7 @@
     ]
   },
   "qt": {
+    "file_extensions": [".qml", ".cpp", ".h", ".hpp"],
     "code_patterns": [
       {
         "name": "strings",
