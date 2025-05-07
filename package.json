@@ -6,7 +6,7 @@
   "publisher": "verblaze",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zekkontro/verblaze_vscode"
+    "url": "https://github.com/Verblaze/verblaze_vscode"
   },
   "icon": "images/icon.png",
   "engines": {
